@@ -1,1 +1,0 @@
-# siencia-sevatica
