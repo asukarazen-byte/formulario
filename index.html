@@ -174,15 +174,18 @@ button:disabled {
         <h2>Formulario de Registro</h2>
 
         <label for="nombre">Nombre completo</label>
-        <input type="text" id="nombre" placeholder="Ingresa tu nombre" required>
+        <input type="text" id="nombre"
+        placeholder="Ingresa tu nombre" required>
         <p id="errorNombre" style="color:red"></p>
 
         <label for="apellido">Apellido</label>
-        <input type="text" id="apellido" placeholder="Ingresa tu apellido" required>
+        <input type="text" id="apellido"
+        placeholder="Ingresa tu apellido" required>
         <p id="errorApellido" style="color:red"></p>
 
         <label for="correo">Correo electrónico</label>
-        <input type="email" id="correo" placeholder="ejemplo@correo.com" required>
+        <input type="email" id="correo"
+        placeholder="ejemplo@correo.com" required>
         <p id="errorCorreo" style="color:red"></p>
 
         <label for="comentarios">Comentarios</label>
@@ -207,12 +210,11 @@ button:disabled {
 
 <script>
 
-// PEGA AQUÍ TU URL DE GOOGLE APPS SCRIPT
-const URL_GOOGLE_SHEETS = "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT";
+// URL DE GOOGLE APPS SCRIPT
+const URL_GOOGLE_SHEETS = "https://script.google.com/macros/s/AKfycbxeKKmo-iNtC-rkQAR2ZE9En9N2BjHyCq8XxhyYIuBsA0dm--NpCXFpqu2yOKxNCET0/exec";
 
 // VALIDAR NOMBRE
 function validarNombre() {
-
     let nombre = document.getElementById("nombre").value.trim();
     let error = document.getElementById("errorNombre");
 
@@ -232,7 +234,6 @@ function validarNombre() {
 
 // VALIDAR APELLIDO
 function validarApellido() {
-
     let apellido = document.getElementById("apellido").value.trim();
     let error = document.getElementById("errorApellido");
 
@@ -252,7 +253,6 @@ function validarApellido() {
 
 // VALIDAR CORREO
 function validarCorreo() {
-
     let correo = document.getElementById("correo").value.trim();
     let error = document.getElementById("errorCorreo");
 
@@ -270,46 +270,32 @@ function validarCorreo() {
 
     error.textContent = "Correo correcto.";
     error.style.color = "green";
-
     return true;
 }
 
-// VALIDAR COMENTARIOS
+// VALIDAR COMENTARIOS (MÍNIMO 11 PALABRAS)
 function validarComentarios() {
-
     let comentarios = document.getElementById("comentarios").value.trim();
-
     let palabras = comentarios.split(/\s+/).filter(Boolean);
-
     let error = document.getElementById("errorComentarios");
 
     if (palabras.length < 11) {
-
         error.textContent =
         "Incorrecto: mínimo 11 palabras. Llevas " + palabras.length + ".";
-
         error.style.color = "red";
-
         return false;
-
-    } else {
-
-        error.textContent =
-        "Correcto: tienes " + palabras.length + " palabras.";
-
-        error.style.color = "green";
-
-        return true;
     }
+
+    error.textContent =
+    "Correcto: tienes " + palabras.length + " palabras.";
+    error.style.color = "green";
+    return true;
 }
 
 // VALIDAR MIENTRAS ESCRIBES
 document.getElementById("nombre").addEventListener("input", validarNombre);
-
 document.getElementById("apellido").addEventListener("input", validarApellido);
-
 document.getElementById("correo").addEventListener("input", validarCorreo);
-
 document.getElementById("comentarios").addEventListener("input", validarComentarios);
 
 // ENVIAR FORMULARIO A GOOGLE SHEETS
@@ -330,15 +316,6 @@ document.getElementById("formulario").addEventListener("submit", async function(
 
         resultado.textContent = "Corrige los errores para continuar.";
         resultado.style.color = "red";
-
-        return;
-    }
-
-    if (URL_GOOGLE_SHEETS === "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT") {
-
-        resultado.textContent = "Primero configura la URL de Google Sheets.";
-        resultado.style.color = "red";
-
         return;
     }
 
